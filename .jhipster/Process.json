@@ -1,0 +1,39 @@
+{
+  "name": "Process",
+  "fields": [
+    {
+      "fieldName": "code",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "step",
+      "otherEntityRelationshipName": "process",
+      "relationshipName": "step",
+      "otherEntityField": "name"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "jobs",
+      "otherEntityRelationshipName": "process",
+      "relationshipName": "jobs",
+      "otherEntityField": "name"
+    }
+  ],
+  "entityTableName": "process",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210419203155"
+}

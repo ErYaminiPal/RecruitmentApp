@@ -1,0 +1,60 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="application">
+      <h2 data-cy="applicationDetailsHeading"><span>Application</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ application.id }}</span>
+        </dd>
+        <dt><span>Date Of Application</span></dt>
+        <dd>
+          <span>{{ application.dateOfApplication | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Education</span></dt>
+        <dd>
+          <span>{{ application.education }}</span>
+        </dd>
+        <dt><span>Experience</span></dt>
+        <dd>
+          <span>{{ application.experience }}</span>
+        </dd>
+        <dt><span>Other Info</span></dt>
+        <dd>
+          <span>{{ application.otherInfo }}</span>
+        </dd>
+        <dt><span>Name</span></dt>
+        <dd>
+          <span>{{ application.name }}</span>
+        </dd>
+        <dt><span>Applicant</span></dt>
+        <dd>
+          <div *ngIf="application.applicant">
+            <a [routerLink]="['/applicant', application.applicant?.id, 'view']">{{ application.applicant?.firstName }}</a>
+          </div>
+        </dd>
+        <dt><span>Jobs</span></dt>
+        <dd>
+          <div *ngIf="application.jobs">
+            <a [routerLink]="['/jobs', application.jobs?.id, 'view']">{{ application.jobs?.code }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/application', application.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

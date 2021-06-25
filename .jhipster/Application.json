@@ -1,0 +1,51 @@
+{
+  "name": "Application",
+  "fields": [
+    {
+      "fieldName": "dateOfApplication",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "education",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "experience",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "otherInfo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "applicant",
+      "otherEntityRelationshipName": "application",
+      "relationshipName": "applicant",
+      "otherEntityField": "firstName"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "jobs",
+      "otherEntityRelationshipName": "application",
+      "relationshipName": "jobs",
+      "otherEntityField": "code"
+    }
+  ],
+  "entityTableName": "application",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210419203157"
+}

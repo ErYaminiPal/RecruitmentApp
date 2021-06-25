@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <!--
+        Added the constraints for entity Jobs.
+    -->
+    <changeSet id="20210419213510-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="job_categories_id"
+                                 baseTableName="jobs"
+                                 constraintName="fk_jobs__job_categories_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="job_categories"/>
+
+        <addForeignKeyConstraint baseColumnNames="job_position_id"
+                                 baseTableName="jobs"
+                                 constraintName="fk_jobs__job_position_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="job_position"/>
+
+        <addForeignKeyConstraint baseColumnNames="client_organization_id"
+                                 baseTableName="jobs"
+                                 constraintName="fk_jobs__client_organization_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="client_organization"/>
+
+        <addForeignKeyConstraint baseColumnNames="process_id"
+                                 baseTableName="jobs"
+                                 constraintName="fk_jobs__process_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="process"/>
+    </changeSet>
+</databaseChangeLog>

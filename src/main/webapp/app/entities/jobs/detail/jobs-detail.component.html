@@ -1,0 +1,76 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="jobs">
+      <h2 data-cy="jobsDetailsHeading"><span>Jobs</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ jobs.id }}</span>
+        </dd>
+        <dt><span>Code</span></dt>
+        <dd>
+          <span>{{ jobs.code }}</span>
+        </dd>
+        <dt><span>Name</span></dt>
+        <dd>
+          <span>{{ jobs.name }}</span>
+        </dd>
+        <dt><span>Description</span></dt>
+        <dd>
+          <span>{{ jobs.description }}</span>
+        </dd>
+        <dt><span>Date Published</span></dt>
+        <dd>
+          <span>{{ jobs.datePublished | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Job Start Date</span></dt>
+        <dd>
+          <span>{{ jobs.jobStartDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span>No Of Vacancies</span></dt>
+        <dd>
+          <span>{{ jobs.noOfVacancies }}</span>
+        </dd>
+        <dt><span>Job Categories</span></dt>
+        <dd>
+          <div *ngIf="jobs.jobCategories">
+            <a [routerLink]="['/job-categories', jobs.jobCategories?.id, 'view']">{{ jobs.jobCategories?.name }}</a>
+          </div>
+        </dd>
+        <dt><span>Job Position</span></dt>
+        <dd>
+          <div *ngIf="jobs.jobPosition">
+            <a [routerLink]="['/job-position', jobs.jobPosition?.id, 'view']">{{ jobs.jobPosition?.name }}</a>
+          </div>
+        </dd>
+        <dt><span>Client Organization</span></dt>
+        <dd>
+          <div *ngIf="jobs.clientOrganization">
+            <a [routerLink]="['/client-organization', jobs.clientOrganization?.id, 'view']">{{ jobs.clientOrganization?.name }}</a>
+          </div>
+        </dd>
+        <dt><span>Process</span></dt>
+        <dd>
+          <div *ngIf="jobs.process">
+            <a [routerLink]="['/process', jobs.process?.id, 'view']">{{ jobs.process?.code }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/jobs', jobs.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

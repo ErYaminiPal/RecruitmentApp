@@ -50,6 +50,22 @@ public class CacheConfiguration {
             createCache(cm, net.marsbytes.app.recruitment.domain.User.class.getName() + ".authorities");
             createCache(cm, net.marsbytes.app.recruitment.domain.PersistentToken.class.getName());
             createCache(cm, net.marsbytes.app.recruitment.domain.User.class.getName() + ".persistentTokens");
+            createCache(cm, net.marsbytes.app.recruitment.domain.Step.class.getName());
+            createCache(cm, net.marsbytes.app.recruitment.domain.Process.class.getName());
+            createCache(cm, net.marsbytes.app.recruitment.domain.Process.class.getName() + ".steps");
+            createCache(cm, net.marsbytes.app.recruitment.domain.Applicant.class.getName());
+            createCache(cm, net.marsbytes.app.recruitment.domain.Applicant.class.getName() + ".applications");
+            createCache(cm, net.marsbytes.app.recruitment.domain.Application.class.getName());
+            createCache(cm, net.marsbytes.app.recruitment.domain.Jobs.class.getName());
+            createCache(cm, net.marsbytes.app.recruitment.domain.JobCategories.class.getName());
+            createCache(cm, net.marsbytes.app.recruitment.domain.JobPosition.class.getName());
+            createCache(cm, net.marsbytes.app.recruitment.domain.ClientOrganization.class.getName());
+            createCache(cm, net.marsbytes.app.recruitment.domain.JobCategories.class.getName() + ".jobs");
+            createCache(cm, net.marsbytes.app.recruitment.domain.JobPosition.class.getName() + ".jobs");
+            createCache(cm, net.marsbytes.app.recruitment.domain.ClientOrganization.class.getName() + ".jobs");
+            createCache(cm, net.marsbytes.app.recruitment.domain.Step.class.getName() + ".processes");
+            createCache(cm, net.marsbytes.app.recruitment.domain.Process.class.getName() + ".jobs");
+            createCache(cm, net.marsbytes.app.recruitment.domain.Jobs.class.getName() + ".applications");
             // jhipster-needle-ehcache-add-entry
         };
     }

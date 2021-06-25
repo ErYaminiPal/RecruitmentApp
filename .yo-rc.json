@@ -41,6 +41,8 @@
     "rememberMeKey": "3e1914e1d6397dfcbd20dabec69f5c495ba85a77f6f8c5179857d96c5950e55190694f6219f2ae962628b20658d8b5aaa921",
     "clientPackageManager": "npm",
     "clientThemeVariant": "",
-    "languages": ["en", "fr"]
+    "languages": ["en", "fr"],
+    "entities": ["Step", "Process", "Applicant", "Application", "Jobs", "JobCategories", "JobPosition", "ClientOrganization"],
+    "lastLiquibaseTimestamp": 1618868113000
   }
 }

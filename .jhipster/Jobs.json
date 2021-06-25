@@ -1,0 +1,76 @@
+{
+  "name": "Jobs",
+  "fields": [
+    {
+      "fieldName": "code",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "datePublished",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "jobStartDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "noOfVacancies",
+      "fieldType": "Integer"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "application",
+      "otherEntityRelationshipName": "jobs",
+      "relationshipName": "application",
+      "otherEntityField": "name"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "jobCategories",
+      "otherEntityRelationshipName": "jobs",
+      "relationshipName": "jobCategories",
+      "otherEntityField": "name"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "jobPosition",
+      "otherEntityRelationshipName": "jobs",
+      "relationshipName": "jobPosition",
+      "otherEntityField": "name"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "clientOrganization",
+      "otherEntityRelationshipName": "jobs",
+      "relationshipName": "clientOrganization",
+      "otherEntityField": "name"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "process",
+      "otherEntityRelationshipName": "jobs",
+      "relationshipName": "process",
+      "otherEntityField": "code"
+    }
+  ],
+  "entityTableName": "jobs",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210419213510"
+}

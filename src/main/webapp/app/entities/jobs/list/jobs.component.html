@@ -1,0 +1,102 @@
+<div>
+  <h2 id="page-heading" data-cy="JobsHeading">
+    <span>Jobs</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-jobs"
+        [routerLink]="['/jobs/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Jobs </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="jobs?.length === 0">
+    <span>No jobs found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="jobs && jobs.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span>ID</span></th>
+          <th scope="col"><span>Code</span></th>
+          <th scope="col"><span>Name</span></th>
+          <th scope="col"><span>Description</span></th>
+          <th scope="col"><span>Date Published</span></th>
+          <th scope="col"><span>Job Start Date</span></th>
+          <th scope="col"><span>No Of Vacancies</span></th>
+          <th scope="col"><span>Job Categories</span></th>
+          <th scope="col"><span>Job Position</span></th>
+          <th scope="col"><span>Client Organization</span></th>
+          <th scope="col"><span>Process</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let jobs of jobs; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/jobs', jobs.id, 'view']">{{ jobs.id }}</a>
+          </td>
+          <td>{{ jobs.code }}</td>
+          <td>{{ jobs.name }}</td>
+          <td>{{ jobs.description }}</td>
+          <td>{{ jobs.datePublished | formatMediumDate }}</td>
+          <td>{{ jobs.jobStartDate | formatMediumDate }}</td>
+          <td>{{ jobs.noOfVacancies }}</td>
+          <td>
+            <div *ngIf="jobs.jobCategories">
+              <a [routerLink]="['/job-categories', jobs.jobCategories?.id, 'view']">{{ jobs.jobCategories?.name }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="jobs.jobPosition">
+              <a [routerLink]="['/job-position', jobs.jobPosition?.id, 'view']">{{ jobs.jobPosition?.name }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="jobs.clientOrganization">
+              <a [routerLink]="['/client-organization', jobs.clientOrganization?.id, 'view']">{{ jobs.clientOrganization?.name }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="jobs.process">
+              <a [routerLink]="['/process', jobs.process?.id, 'view']">{{ jobs.process?.code }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/jobs', jobs.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/jobs', jobs.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(jobs)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,182 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-jobs-heading" data-cy="JobsCreateUpdateHeading">Create or edit a Jobs</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_code">Code</label>
+          <input type="text" class="form-control" name="code" id="field_code" data-cy="code" formControlName="code" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_description">Description</label>
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_datePublished">Date Published</label>
+          <div class="input-group">
+            <input
+              id="field_datePublished"
+              data-cy="datePublished"
+              type="text"
+              class="form-control"
+              name="datePublished"
+              ngbDatepicker
+              #datePublishedDp="ngbDatepicker"
+              formControlName="datePublished"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="datePublishedDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_jobStartDate">Job Start Date</label>
+          <div class="input-group">
+            <input
+              id="field_jobStartDate"
+              data-cy="jobStartDate"
+              type="text"
+              class="form-control"
+              name="jobStartDate"
+              ngbDatepicker
+              #jobStartDateDp="ngbDatepicker"
+              formControlName="jobStartDate"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="jobStartDateDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_noOfVacancies">No Of Vacancies</label>
+          <input
+            type="number"
+            class="form-control"
+            name="noOfVacancies"
+            id="field_noOfVacancies"
+            data-cy="noOfVacancies"
+            formControlName="noOfVacancies"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_jobCategories">Job Categories</label>
+          <select
+            class="form-control"
+            id="field_jobCategories"
+            data-cy="jobCategories"
+            name="jobCategories"
+            formControlName="jobCategories"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                jobCategoriesOption.id === editForm.get('jobCategories')!.value?.id
+                  ? editForm.get('jobCategories')!.value
+                  : jobCategoriesOption
+              "
+              *ngFor="let jobCategoriesOption of jobCategoriesSharedCollection; trackBy: trackJobCategoriesById"
+            >
+              {{ jobCategoriesOption.name }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_jobPosition">Job Position</label>
+          <select class="form-control" id="field_jobPosition" data-cy="jobPosition" name="jobPosition" formControlName="jobPosition">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                jobPositionOption.id === editForm.get('jobPosition')!.value?.id ? editForm.get('jobPosition')!.value : jobPositionOption
+              "
+              *ngFor="let jobPositionOption of jobPositionsSharedCollection; trackBy: trackJobPositionById"
+            >
+              {{ jobPositionOption.name }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_clientOrganization">Client Organization</label>
+          <select
+            class="form-control"
+            id="field_clientOrganization"
+            data-cy="clientOrganization"
+            name="clientOrganization"
+            formControlName="clientOrganization"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                clientOrganizationOption.id === editForm.get('clientOrganization')!.value?.id
+                  ? editForm.get('clientOrganization')!.value
+                  : clientOrganizationOption
+              "
+              *ngFor="let clientOrganizationOption of clientOrganizationsSharedCollection; trackBy: trackClientOrganizationById"
+            >
+              {{ clientOrganizationOption.name }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_process">Process</label>
+          <select class="form-control" id="field_process" data-cy="process" name="process" formControlName="process">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="processOption.id === editForm.get('process')!.value?.id ? editForm.get('process')!.value : processOption"
+              *ngFor="let processOption of processesSharedCollection; trackBy: trackProcessById"
+            >
+              {{ processOption.code }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

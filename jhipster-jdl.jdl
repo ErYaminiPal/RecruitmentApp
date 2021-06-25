@@ -1,0 +1,87 @@
+
+entity Step {
+    code String
+    name String
+}
+
+entity Process {
+  code String
+  description String
+}
+
+entity Applicant {
+    firstName String
+    lastName String
+    email String
+    phone String
+    summary String
+    CTC Integer
+    ECTC Integer
+    highestEducation String
+}
+
+entity Application {
+    dateOfApplication LocalDate
+    education String
+    experience String
+    otherInfo String
+    name String
+}
+
+entity Jobs {
+    code String
+    name String
+    description String
+    datePublished LocalDate
+    jobStartDate LocalDate
+    noOfVacancies Integer
+}
+
+entity JobCategories {
+    code String
+    name String
+    description String
+}
+
+
+entity JobPosition {
+  code String
+    name String
+    description String
+}
+
+entity ClientOrganization {
+    code String
+    name String
+    description String
+}
+
+
+relationship OneToMany {
+  Process{Step(name) } to Step{Process(code)}
+}
+
+
+relationship OneToMany {
+  Applicant{Application} to Application{Applicant(firstName)}
+}
+
+relationship OneToMany {
+  JobCategories{Jobs} to Jobs{JobCategories(name)}
+}
+
+relationship OneToMany {
+  JobPosition{Jobs} to Jobs{JobPosition(name)}
+}
+
+relationship OneToMany {
+  ClientOrganization{Jobs} to Jobs{ClientOrganization(name)}
+}
+
+relationship OneToMany {
+  Process{Jobs(name) } to Jobs{Process(code)}
+}
+
+relationship OneToMany {
+  Jobs{Application(name) } to Application{Jobs(code)}
+}
