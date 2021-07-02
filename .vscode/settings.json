@@ -6,9 +6,10 @@
             "port": 5432,
             "askForPassword": true,
             "driver": "PostgreSQL",
-            "name": "jdbc:postgresql://localhost:5432/recruitmentApp",
+            "name": "postgresql",
             "database": "postgres",
-            "username": "postgres"
+            "username": "postgres",
+            "group": "Servers"
         }
     ]
 }
