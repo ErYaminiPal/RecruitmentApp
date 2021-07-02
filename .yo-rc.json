@@ -25,7 +25,7 @@
     "enableHibernateCache": true,
     "databaseType": "sql",
     "devDatabaseType": "h2Memory",
-    "prodDatabaseType": "mysql",
+    "prodDatabaseType": "postgresql",
     "buildTool": "maven",
     "serverSideOptions": [],
     "websocket": false,
@@ -43,6 +43,9 @@
     "clientThemeVariant": "",
     "languages": ["en", "fr"],
     "entities": ["Step", "Process", "Applicant", "Application", "Jobs", "JobCategories", "JobPosition", "ClientOrganization"],
-    "lastLiquibaseTimestamp": 1618868113000
+    "lastLiquibaseTimestamp": 1618868113000,
+    "herokuAppName": "recruitment-app",
+    "herokuDeployType": "jar",
+    "herokuJavaVersion": "14"
   }
 }
