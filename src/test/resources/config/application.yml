@@ -21,18 +21,19 @@ spring:
     name: recruitmentApp
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:h2:mem:recruitmentapp;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    url: jdbc:tc:postgresql:13.3://localhost:5432/recruitmentApp
     name:
-    username:
-    password:
+    username: postgres
+    password: Agra@282005
     hikari:
       auto-commit: false
+      driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
   jackson:
     serialization:
       write-durations-as-timestamps: false
   jpa:
-    database-platform: tech.jhipster.domain.util.FixedH2Dialect
-    open-in-view: false
+    database-platform: io.github.jhipster.domain.util.FixedPostgreSQL95Dialect
+    database: POSTGRESQL
     hibernate:
       ddl-auto: none
       naming:
